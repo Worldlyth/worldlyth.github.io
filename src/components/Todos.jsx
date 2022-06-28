@@ -7,13 +7,20 @@ const Todos = () => {
   const [todos, setTodos] = useState([])
   const [title, setTitle] = useState("")
   const [filter, setFilter] = useState("")
-  const [filteredTodos, setFilteredTodos] = useState ([])
+  const [sort, setSort] = useState("")
+  const [filteredTodos, setFilteredTodos] = useState([])
 
-useEffect(()=>{
-  let filteredTodos = todos.filter((todo) => todo.title.includes(filter))
-  console.log(filteredTodos);
-  setFilteredTodos(filteredTodos)
-},[todos,filter])
+  useEffect(() => {
+    let filteredTodos = todos.filter((todo) =>
+      todo.title.toLowerCase().includes(filter)
+    )
+    setFilteredTodos(filteredTodos)
+  }, [todos, filter])
+
+  useEffect(() => {
+    
+
+  }, [todos, sort])
 
   const handleInput = (e) => {
     setTitle(e.target.value)
@@ -59,16 +66,18 @@ useEffect(()=>{
         />
       </form>
 
-      <h2 className="todos">TODO list</h2>
-      <TodoNavigation 
-      todos={todos} 
-      setTodos={setTodos} 
-      setFilter={setFilter}
-      filter={filter}
+      <h4 className="todos">TODO list</h4>
+      <TodoNavigation
+        todos={todos}
+        setTodos={setTodos}
+        setFilter={setFilter}
+        filter={filter}
+        sort={sort}
+        setSort={setSort}
       />
       <hr className="todos" />
 
-      {todos.length ? (
+      {filteredTodos.length ? (
         <TodoList
           className="todos"
           todos={filteredTodos}

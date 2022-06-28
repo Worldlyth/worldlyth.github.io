@@ -1,6 +1,6 @@
 import React, { useState } from "react"
 
-const TodoNavigation = ({filter, setFilter, setTodos}) => {
+const TodoNavigation = ({filter, setFilter, setTodos, sort, setSort}) => {
 
 
   const clearTodos = () => {
@@ -12,18 +12,24 @@ const TodoNavigation = ({filter, setFilter, setTodos}) => {
     setFilter(e.target.value)
   }
 
+  const handleSorting = (e) => {
+    setSort(e.target.checked)
+  }
+
   return (
     <div className="switch todos" style={{ display: "flex", alignItems: "center" }}>
-      <span style={{ marginRight: "20px", fontSize: "20px" }}>Completed:</span>
+      <span style={{ marginRight: "20px", fontSize: "20px" }}>Sort:</span>
       <label>
-        Show
-        <input type="checkbox" />
+        Off
+        <input type="checkbox" onChange={handleSorting} checked={sort}/>
         <span className="lever"></span>
-        Hide
+        On
       </label>
+
+      
       <input 
       type="text" 
-      style={{ width: "30%", margin: "0 auto", textAlign: "center", fontSize: "20px" }} 
+      style={{ width: "30%", margin: "0 auto", marginLeft: "300px", textAlign: "center", fontSize: "20px" }} 
       placeholder="find some TODOS"
       onChange={handleFilter}
       value={filter}
