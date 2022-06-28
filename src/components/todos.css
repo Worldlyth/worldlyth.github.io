@@ -1,0 +1,9 @@
+.todos {
+    margin: 20px 50px;
+}
+
+.todos__item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
